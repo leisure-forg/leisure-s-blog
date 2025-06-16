@@ -6,7 +6,9 @@
   font-weight: normal;
   box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -19,11 +21,11 @@ a,
   padding: 3px;
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(0, 0%, 0%, 0.2);
   }
-}
+} */
 
 .video-bg {
   width: 100%;

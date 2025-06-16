@@ -1,0 +1,726 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "个人网站API文档",
+    "version": "1.0.0",
+    "description": "个人网站的后端API接口文档"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api",
+      "description": "开发环境服务器"
+    }
+  ],
+  "tags": [
+    {
+      "name": "文章管理",
+      "description": "文章相关的API接口"
+    },
+    {
+      "name": "随记管理",
+      "description": "随记相关的API接口"
+    },
+    {
+      "name": "相册管理",
+      "description": "相册相关的API接口"
+    },
+    {
+      "name": "留言管理",
+      "description": "留言相关的API接口"
+    },
+    {
+      "name": "用户管理",
+      "description": "用户相关的API接口"
+    }
+  ],
+  "paths": {
+    "/articles": {
+      "get": {
+        "tags": ["文章管理"],
+        "summary": "获取文章列表",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "标签筛选",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取文章列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "总记录数"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "文章ID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "文章标题"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "文章描述"
+                          },
+                          "tags": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "文章标签"
+                          },
+                          "updateTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "更新时间"
+                          },
+                          "likes": {
+                            "type": "integer",
+                            "description": "点赞数"
+                          },
+                          "views": {
+                            "type": "integer",
+                            "description": "浏览量"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["文章管理"],
+        "summary": "创建新文章",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "description": "文章标题"
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "文章内容"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "文章描述"
+                  },
+                  "tags": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "文章标签"
+                  }
+                },
+                "required": ["title", "content"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "文章创建成功"
+          }
+        }
+      }
+    },
+    "/articles/{id}": {
+      "get": {
+        "tags": ["文章管理"],
+        "summary": "获取文章详情",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "文章ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取文章详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "文章ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "文章标题"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "文章内容"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "文章描述"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "文章标签"
+                    },
+                    "updateTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "更新时间"
+                    },
+                    "likes": {
+                      "type": "integer",
+                      "description": "点赞数"
+                    },
+                    "views": {
+                      "type": "integer",
+                      "description": "浏览量"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/articles/{id}/like": {
+      "post": {
+        "tags": ["文章管理"],
+        "summary": "点赞文章",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "文章ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "点赞成功"
+          }
+        }
+      }
+    },
+    "/articles/{id}/comments": {
+      "get": {
+        "tags": ["文章管理"],
+        "summary": "获取文章评论",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "文章ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取评论列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "评论ID"
+                      },
+                      "content": {
+                        "type": "string",
+                        "description": "评论内容"
+                      },
+                      "author": {
+                        "type": "string",
+                        "description": "评论作者"
+                      },
+                      "createTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "创建时间"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["文章管理"],
+        "summary": "添加文章评论",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "文章ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "评论内容"
+                  }
+                },
+                "required": ["content"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "评论添加成功"
+          }
+        }
+      }
+    },
+    "/notes": {
+      "get": {
+        "tags": ["随记管理"],
+        "summary": "获取随记列表",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取随记列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "总记录数"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "随记ID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "随记标题"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "随记描述"
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "description": "随记配图"
+                          },
+                          "updateTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "更新时间"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notes/{id}": {
+      "get": {
+        "tags": ["随记管理"],
+        "summary": "获取随记详情",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "随记ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取随记详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "随记ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "随记标题"
+                    },
+                    "content": {
+                      "type": "string",
+                      "description": "随记内容"
+                    },
+                    "imageUrl": {
+                      "type": "string",
+                      "description": "随记配图"
+                    },
+                    "updateTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "更新时间"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/albums": {
+      "get": {
+        "tags": ["相册管理"],
+        "summary": "获取相册列表",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取相册列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "总记录数"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "相册ID"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "相册标题"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "相册描述"
+                          },
+                          "coverImages": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "封面图片列表"
+                          },
+                          "updateTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "更新时间"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/albums/{id}": {
+      "get": {
+        "tags": ["相册管理"],
+        "summary": "获取相册详情",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "相册ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取相册详情",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "相册ID"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "相册标题"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "相册描述"
+                    },
+                    "photos": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "照片ID"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "照片URL"
+                          },
+                          "description": {
+                            "type": "string",
+                            "description": "照片描述"
+                          }
+                        }
+                      },
+                      "description": "相册中的照片列表"
+                    },
+                    "updateTime": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "更新时间"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages": {
+      "get": {
+        "tags": ["留言管理"],
+        "summary": "获取留言列表",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功获取留言列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "description": "总记录数"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "留言ID"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "留言内容"
+                          },
+                          "author": {
+                            "type": "string",
+                            "description": "留言作者"
+                          },
+                          "avatar": {
+                            "type": "string",
+                            "description": "作者头像"
+                          },
+                          "createTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "创建时间"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["留言管理"],
+        "summary": "添加新留言",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "留言内容"
+                  }
+                },
+                "required": ["content"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "留言添加成功"
+          }
+        }
+      }
+    }
+  }
+}

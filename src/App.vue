@@ -27,7 +27,7 @@ const isAuthPage = computed(() => ['login', 'register'].includes(route.name as s
         <main class="main-content">
           <RouterView />
         </main>
-        <aside class="sidebar-right">
+        <aside v-if="route.name === 'home'" class="sidebar-right">
           <SidebarExtra />
         </aside>
       </div>

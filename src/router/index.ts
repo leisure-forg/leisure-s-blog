@@ -8,40 +8,79 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/articles',
+      name: 'articles',
+      component: () => import('../views/ArticlesView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/articles/:id',
+      name: 'article-detail',
+      component: () => import('../views/ArticleDetailView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/notes',
+      name: 'notes',
+      component: () => import('../views/NotesView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/notes/:id',
+      name: 'note-detail',
+      component: () => import('../views/NoteDetailView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/messages',
+      name: 'messages',
+      component: () => import('../views/MessagesView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/albums',
+      name: 'albums',
+      component: () => import('../views/AlbumsView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/albums/:id',
+      name: 'album-detail',
+      component: () => import('../views/AlbumDetailView.vue'),
+      meta: { requiresAuth: true },
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue')
+      component: () => import('../views/LoginView.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/RegisterView.vue')
+      component: () => import('../views/RegisterView.vue'),
     },
     {
       path: '/profile',
       name: 'profile',
       component: () => import('../views/ProfileView.vue'),
-      meta: { requiresAuth: true }
-    }
-  ]
+      meta: { requiresAuth: true },
+    },
+  ],
 })
 
 // 路由守卫
 router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('isLoggedIn')
-  
+
   if (to.meta.requiresAuth && !isLoggedIn) {
     next('/login')
   } else {

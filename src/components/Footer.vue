@@ -5,7 +5,7 @@
         <h2>leisure</h2>
         <p>后端开发 | 项目部署 | 数据库设计</p>
       </div>
-      
+
       <div class="footer-links">
         <div class="footer-links-column">
           <h3>导航</h3>
@@ -14,7 +14,7 @@
           <a href="#" @click.prevent="scrollTo('projects')">项目</a>
           <a href="#" @click.prevent="scrollTo('contact')">联系</a>
         </div>
-        
+
         <div class="footer-links-column">
           <h3>社交媒体</h3>
           <a href="#" target="_blank">GitHub</a>
@@ -22,7 +22,7 @@
           <a href="#" target="_blank">微博</a>
           <a href="#" target="_blank">知乎</a>
         </div>
-        
+
         <div class="footer-links-column">
           <h3>资源</h3>
           <a href="#" target="_blank">博客</a>
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="footer-bottom">
       <p>&copy; {{ currentYear }} leisure. 保留所有权利。</p>
       <p>使用 Vue.js 构建 | 由 ❤️ 驱动</p>
@@ -40,24 +40,24 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 
-const currentYear = computed(() => new Date().getFullYear());
+const currentYear = computed(() => new Date().getFullYear())
 
 const scrollTo = (sectionId) => {
-  const element = document.getElementById(sectionId);
+  const element = document.getElementById(sectionId)
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: 'smooth' })
   }
-};
+}
 </script>
 
 <style scoped>
 .footer {
-  background: rgba(0, 10, 20, 0.9);
+  background: rgba(255, 255, 255, 0.678);
   padding: 3rem 0 1.5rem;
   margin-top: 2rem;
-  border-top: 1px solid rgba(255, 107, 53, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .footer-content {
@@ -93,7 +93,7 @@ const scrollTo = (sectionId) => {
 }
 
 .footer-links-column h3 {
-  color: #e6f1ff;
+  color: #050505;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
@@ -131,10 +131,10 @@ const scrollTo = (sectionId) => {
   .footer-content {
     flex-direction: column;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
 }
-</style> 
+</style>

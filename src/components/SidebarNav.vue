@@ -1,37 +1,40 @@
 <template>
   <nav class="sidebar-nav">
-    <ul>
-      <li>
-        <router-link to="/"><span class="icon">🏠</span> 首页</router-link>
-      </li>
-      <li>
-        <a href="#"><span class="icon">📄</span> 文章</a>
-      </li>
-      <li>
-        <a href="#"><span class="icon">📝</span> 随记</a>
-      </li>
-      <li>
-        <a href="#"><span class="icon">💬</span> 留言</a>
-      </li>
-      <li>
-        <a href="#"><span class="icon">🖼️</span> 相册</a>
-      </li>
-      <li>
-        <router-link to="/about"><span class="icon">👤</span> 关于我</router-link>
-      </li>
-      <li>
-        <a href="#"><span class="icon">🔗</span> 友链</a>
-      </li>
-    </ul>
+    <router-link to="/" class="nav-item">
+      <IconHome class="icon" />
+      <span>首页</span>
+    </router-link>
+    <router-link to="/articles" class="nav-item">
+      <IconDocumentation class="icon" />
+      <span>文章</span>
+    </router-link>
+    <router-link to="/notes" class="nav-item">
+      <!-- <i class="fas fa-sticky-note"></i> -->
+      <IconCommunity class="icon" />
+      <span>随记</span>
+    </router-link>
+    <router-link to="/albums" class="nav-item">
+      <i class="fas fa-images"></i>
+      <span>相册</span>
+    </router-link>
+    <router-link to="/messages" class="nav-item">
+      <i class="fas fa-comments"></i>
+      <span>留言</span>
+    </router-link>
+    <router-link to="/about" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>关于我</span>
+    </router-link>
   </nav>
 </template>
 
 <script setup>
-// 暂无逻辑
-</script>
-
-<script>
-export default {}
+import IconCommunity from './icons/IconCommunity.vue'
+import IconDocumentation from './icons/IconDocumentation.vue'
+//import IconEcosystem from './icons/IconEcosystem.vue'
+import IconHome from './icons/IconHome.vue'
+//import IconSupport from './icons/IconSupport.vue'
+//import IconTooling from './icons/IconTooling.vue'
 </script>
 
 <style scoped>
@@ -70,8 +73,14 @@ export default {}
   background: #f0f6ff;
   color: #409eff;
   border-left: 4px solid #409eff;
+  scale: 1.05;
+  transition: 0.2s;
 }
 .icon {
+  margin-right: 12px;
+  font-size: 1.2em;
+}
+.fas {
   margin-right: 12px;
   font-size: 1.2em;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="user-avatar" @click="toggleDropdown">
-    <img :src="userAvatar" alt="用户头像" class="avatar-img">
+    <img :src="userAvatar" alt="用户头像" class="avatar-img" />
     <div class="dropdown-menu" v-show="isDropdownVisible">
       <div class="user-info">
         <span class="username">{{ username }}</span>
@@ -21,36 +21,36 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
-const isDropdownVisible = ref(false);
-const username = ref('admin');
-const email = ref('leisure_667010@163.com');
-const userAvatar = ref('https://api.dicebear.com/7.x/avataaars/svg?seed=admin');
+const router = useRouter()
+const isDropdownVisible = ref(false)
+const username = ref('admin')
+const email = ref('leisure_667010@163.com')
+const userAvatar = ref('https://api.dicebear.com/7.x/avataaars/svg?seed=admin')
 
 const toggleDropdown = (): void => {
-  isDropdownVisible.value = !isDropdownVisible.value;
-};
+  isDropdownVisible.value = !isDropdownVisible.value
+}
 
 const handleLogout = (): void => {
   // 清除登录状态
-  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('isLoggedIn')
   // 跳转到登录页
-  router.push('/login');
-};
+  router.push('/login')
+}
 
 // 点击其他地方关闭下拉菜单
 const handleClickOutside = (event: MouseEvent): void => {
-  const target = event.target as HTMLElement;
+  const target = event.target as HTMLElement
   if (!target.closest('.user-avatar')) {
-    isDropdownVisible.value = false;
+    isDropdownVisible.value = false
   }
-};
+}
 
 // 添加全局点击事件监听
-window.addEventListener('click', handleClickOutside);
+window.addEventListener('click', handleClickOutside)
 </script>
 
 <style scoped>
@@ -119,4 +119,4 @@ window.addEventListener('click', handleClickOutside);
 .icon {
   margin-right: 8px;
 }
-</style> 
+</style>
