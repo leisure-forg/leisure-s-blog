@@ -1,9 +1,5 @@
 <template>
   <div class="sidebar-extra">
-    <!-- 主题切换 -->
-    <section class="theme-section">
-      <ThemeToggle />
-    </section>
     <!-- 心情/格言区 -->
     <section class="mood-section">
       <div class="mood-title">🌞 原来长大并不简单</div>

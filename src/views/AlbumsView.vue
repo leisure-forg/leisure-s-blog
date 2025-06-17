@@ -18,8 +18,8 @@ const albums = ref<Album[]>([
     coverImages: [
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
       'https://images.unsplash.com/photo-1506744476757-2fa06c5a3948',
-      'https://images.unsplash.com/photo-1506744506831-911e3abd9354'
-    ]
+      'https://images.unsplash.com/photo-1506744506831-911e3abd9354',
+    ],
   },
   {
     id: 2,
@@ -29,9 +29,9 @@ const albums = ref<Album[]>([
     coverImages: [
       'https://images.unsplash.com/photo-1506744476757-2fa06c5a3948',
       'https://images.unsplash.com/photo-1506744506831-911e3abd9354',
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb'
-    ]
-  }
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+    ],
+  },
 ])
 </script>
 
@@ -72,7 +72,7 @@ const albums = ref<Album[]>([
 .page-title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--color-text);
 }
 
 .albums-grid {
@@ -82,10 +82,10 @@ const albums = ref<Album[]>([
 }
 
 .album-box {
-  background: #fff;
+  background: var(--color-background-soft);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px var(--color-shadow);
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -114,18 +114,18 @@ const albums = ref<Album[]>([
 
 .album-title {
   font-size: 18px;
-  color: #2c3e50;
+  color: var(--color-text);
   margin: 0 0 8px 0;
 }
 
 .update-time {
-  color: #666;
+  color: var(--color-text-soft);
   font-size: 14px;
   margin-bottom: 8px;
 }
 
 .album-description {
-  color: #666;
+  color: var(--color-text-soft);
   font-size: 14px;
   margin: 0;
   overflow: hidden;

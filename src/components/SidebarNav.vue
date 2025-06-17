@@ -76,14 +76,14 @@ import IconHome from './icons/IconHome.vue'
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--color-primary-soft);
+  background-color: var(--color-background-mute);
   transform: translateX(-100%);
   transition: transform var(--transition-normal) var(--ease-out);
   z-index: -1;
 }
 
 .nav-item:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
   border-left: 4px solid var(--color-primary);
   transform: translateX(var(--space-xs));
 }
@@ -93,9 +93,9 @@ import IconHome from './icons/IconHome.vue'
 }
 
 .nav-item.router-link-active {
-  color: var(--color-primary-dark);
+  color: var(--color-primary);
   border-left: 4px solid var(--color-primary);
-  background-color: var(--color-primary-soft);
+  background-color: var(--color-background-mute);
   font-weight: var(--font-semibold);
 }
 
@@ -104,7 +104,7 @@ import IconHome from './icons/IconHome.vue'
   margin-right: var(--space-md);
   font-size: var(--text-lg);
   transition: transform var(--transition-normal) var(--ease-out);
-  color: var(--color-text-light);
+  color: var(--color-text-soft);
 }
 
 .nav-item:hover .icon,

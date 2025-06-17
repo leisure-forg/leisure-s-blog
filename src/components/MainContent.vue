@@ -177,7 +177,7 @@ const navigateToDetail = (update: Update) => {
   transform: translateY(-50%);
   width: 4px;
   height: 24px;
-  background: var(--primary-500);
+  background: var(--color-primary);
   border-radius: var(--radius-sm);
 }
 
@@ -203,7 +203,7 @@ const navigateToDetail = (update: Update) => {
   left: 0;
   width: 4px;
   height: 0;
-  background: var(--primary-500);
+  background: var(--color-primary);
   transition: height var(--transition-normal) var(--ease-out);
 }
 
@@ -211,7 +211,7 @@ const navigateToDetail = (update: Update) => {
 .update-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary-200);
+  border-color: var(--color-primary-soft);
 }
 
 .article-card:hover::before,
@@ -233,7 +233,7 @@ const navigateToDetail = (update: Update) => {
 }
 
 .article-meta {
-  color: var(--neutral-500);
+  color: var(--color-text-soft);
   font-size: var(--text-sm);
   margin-bottom: var(--space-sm);
   display: flex;
@@ -243,8 +243,8 @@ const navigateToDetail = (update: Update) => {
 }
 
 .article-meta span {
-  background: var(--primary-50);
-  color: var(--primary-600);
+  background: var(--color-background-mute);
+  color: var(--primary-400);
   border-radius: var(--radius-full);
   padding: 2px var(--space-sm);
   font-size: var(--text-xs);
@@ -253,12 +253,13 @@ const navigateToDetail = (update: Update) => {
 }
 
 .article-meta span:hover {
-  background: var(--primary-100);
+  background: var(--primary-600);
+  color: var(--color-background);
   transform: scale(1.05);
 }
 
 .article-desc {
-  color: var(--neutral-700);
+  color: var(--color-text-soft);
   margin-bottom: var(--space-md);
   line-height: 1.6;
   font-size: var(--text-sm);
@@ -271,7 +272,7 @@ const navigateToDetail = (update: Update) => {
 }
 
 .article-actions span {
-  color: var(--neutral-500);
+  color: var(--color-text-soft);
   font-size: var(--text-sm);
   display: flex;
   align-items: center;
@@ -280,7 +281,7 @@ const navigateToDetail = (update: Update) => {
 }
 
 .article-actions span:hover {
-  color: var(--primary-500);
+  color: var(--primary-400);
 }
 
 .update-card {
@@ -316,7 +317,7 @@ const navigateToDetail = (update: Update) => {
 }
 
 .update-meta {
-  color: var(--neutral-500);
+  color: var(--color-text-soft);
   font-size: var(--text-sm);
   margin-bottom: var(--space-xs);
   display: flex;
@@ -325,7 +326,7 @@ const navigateToDetail = (update: Update) => {
 }
 
 .update-desc {
-  color: var(--neutral-700);
+  color: var(--color-text-soft);
   line-height: 1.6;
   font-size: var(--text-sm);
 }

@@ -69,7 +69,7 @@
 
 .desc {
   font-size: var(--text-sm);
-  color: var(--neutral-500);
+  color: var(--color-text-soft);
   text-align: center;
   margin-bottom: var(--space-md);
   line-height: 1.6;

@@ -30,25 +30,63 @@
   --neutral-800: #27272a;
   --neutral-900: #18181b;
 
-  /* 主题变量 - 默认使用橙色主题 */
+  /* 主题变量 - 默认使用橙色主题（浅色模式） */
   --theme-primary: var(--accent-500);
   --theme-primary-dark: var(--accent-600);
   --theme-background: #ffffff;
   --theme-background-soft: var(--neutral-50);
   --theme-shadow: rgba(0, 0, 0, 0.04);
   --theme-tag-bg: #ffe9d9;
+
+  /* 浅色模式文本和背景颜色 */
+  --color-background: #ffffff;
+  --color-background-soft: #f8f8f8;
+  --color-background-mute: #f2f2f2;
+
+  --color-border: var(--neutral-200);
+  --color-border-hover: var(--neutral-300);
+  --color-border-accent: var(--accent-500);
+
+  --color-heading: var(--neutral-900);
+  --color-text: #2c3e50;
+  --color-text-soft: #4a5568;
+
+  --color-primary: var(--accent-500);
+  --color-primary-dark: var(--accent-600);
+  --color-primary-soft: rgba(249, 115, 22, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.04);
 }
 
-/* 蓝紫主题 */
+/* 蓝紫主题 - 深色模式 */
 :root[data-theme='indigo'] {
   --theme-primary: var(--theme-indigo-500);
   --theme-primary-dark: var(--theme-indigo-600);
-  --theme-background: #ffffff;
-  --theme-background-soft: var(--neutral-50);
-  --theme-shadow: rgba(0, 0, 0, 0.04);
-  --theme-tag-bg: #e3f0ff;
+  --theme-background: #1a1a2e;
+  --theme-background-soft: #242438;
+  --theme-shadow: rgba(0, 0, 0, 0.2);
+  --theme-tag-bg: #3a3a5c;
+
+  /* 深色模式文本和背景颜色 */
+  --color-background: #1a1a2e;
+  --color-background-soft: #242438;
+  --color-background-mute: #2f2f46;
+
+  --color-border: #3a3a5c;
+  --color-border-hover: #4a4a6a;
+  --color-border-accent: #6366f1;
+
+  --color-heading: #e1e1ff;
+  --color-text: #e1e1ff;
+  --color-text-soft: #a8a8d0;
+
+  --color-primary: var(--theme-indigo-500);
+  --color-primary-dark: var(--theme-indigo-600);
+  --color-primary-soft: rgba(99, 102, 241, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.2);
 }
 
+/* 全局共享变量 - 不随主题变化 */
+:root {
   /* 功能色 */
   --success: #10b981;
   --warning: #f59e0b;
@@ -114,23 +152,12 @@
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* 语义化颜色变量 */
-  --color-background: var(--neutral-50);
-  --color-background-soft: var(--neutral-100);
-  --color-background-mute: var(--neutral-200);
-
-  --color-border: var(--neutral-200);
-  --color-border-hover: var(--neutral-300);
-
-  --color-heading: var(--neutral-900);
-  --color-text: var(--neutral-700);
-
   --section-gap: var(--space-2xl);
 }
 
-/* 深色模式 */
+/* 系统深色模式 - 仅当用户未手动设置主题时生效 */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --color-background: var(--neutral-900);
     --color-background-soft: var(--neutral-800);
     --color-background-mute: var(--neutral-700);
@@ -140,6 +167,11 @@
 
     --color-heading: var(--neutral-50);
     --color-text: var(--neutral-200);
+    --color-text-soft: var(--neutral-400);
+
+    --color-primary: var(--primary-400);
+    --color-primary-dark: var(--primary-500);
+    --color-primary-soft: rgba(56, 189, 248, 0.1);
   }
 }
 

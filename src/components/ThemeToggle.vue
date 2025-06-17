@@ -59,20 +59,34 @@ const toggleTheme = () => {
 
 // 应用主题到 HTML 元素
 const applyTheme = (theme) => {
-  console.log('Applying theme:', theme) // 调试日志
+  console.log('Applying theme:', theme)
 
   // 确保在切换主题之前移除现有的主题
   document.documentElement.removeAttribute('data-theme')
 
+  const root = document.documentElement
   if (theme === 'indigo') {
-    document.documentElement.setAttribute('data-theme', 'indigo')
+    root.setAttribute('data-theme', 'indigo')
+    // 设置深色主题的背景色和文本颜色
+    root.style.setProperty('--color-background', '#1a1a2e')
+    root.style.setProperty('--color-background-soft', '#242438')
+    root.style.setProperty('--color-background-mute', '#2f2f46')
+    root.style.setProperty('--color-text', '#e1e1ff')
+    root.style.setProperty('--color-text-soft', '#a8a8d0')
+  } else {
+    // 设置默认（橙色）主题的背景色和文本颜色
+    root.style.setProperty('--color-background', '#ffffff')
+    root.style.setProperty('--color-background-soft', '#f8f8f8')
+    root.style.setProperty('--color-background-mute', '#f2f2f2')
+    root.style.setProperty('--color-text', '#2c3e50')
+    root.style.setProperty('--color-text-soft', '#4a5568')
   }
 
   // 保存主题到 localStorage
   localStorage.setItem('user-theme', theme)
 
   // 验证主题是否正确应用
-  console.log('Current data-theme attribute:', document.documentElement.getAttribute('data-theme'))
+  console.log('Current data-theme attribute:', root.getAttribute('data-theme'))
 }
 
 // 监听主题变化
