@@ -3,7 +3,7 @@
     <section id="home" class="hero">
       <h2>你好，我是 <span>leisure</span></h2>
       <p>一名热爱编程的大学生，专注于后端开发</p>
-      
+
       <div class="stats">
         <div class="stat-card">
           <div class="number">1</div>
@@ -19,15 +19,17 @@
         </div>
       </div>
     </section>
-    
+
     <section id="story" class="story">
       <div class="section-header">
         <div class="section-number">01</div>
         <h3>我的故事</h3>
       </div>
-      <p>我是一名江西理工大学的学生，热爱编程和技术创新。在过去的两年里，我专注于学习后端开发与少量前端技术，包括Java,Spring,SpringMvc,Springboot,myBatis,Redis,nginx,maven,docker,linux,git,mysql,JDBC,JWT和html,css,js,vue等。</p>
+      <p>
+        我是一名江西理工大学的学生，热爱编程和技术创新。在过去的两年里，我专注于学习后端开发与少量前端技术，包括Java,Spring,SpringMvc,Springboot,myBatis,Redis,nginx,maven,docker,linux,git,mysql,JDBC,JWT和html,css,js,vue等。
+      </p>
       <p>我喜欢将创意转化为实际的网页和应用程序，并且一直在寻找新的挑战和学习机会。</p>
-      
+
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-dot"></div>
@@ -37,7 +39,7 @@
             <p>接触Java,和WebSocket，创建了第一个局域网聊天应用</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-date">2025-1</div>
@@ -46,7 +48,7 @@
             <p>学习Java基础和进阶知识，利用多线程开始成功开发Java版坦克大战</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-date">2025-5</div>
@@ -55,7 +57,7 @@
             <p>深入学习SSM架构，和数据库技术,构建了第一个校内外卖平台应用</p>
           </div>
         </div>
-        
+
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-date">2025-5</div>
@@ -66,22 +68,22 @@
         </div>
       </div>
     </section>
-    
+
     <!-- 引入技能组件 -->
     <div id="skills">
       <Skills />
     </div>
-    
+
     <!-- 引入项目组件 -->
     <div id="projects">
       <Projects />
     </div>
-    
+
     <!-- 引入联系表单组件 -->
     <div id="contact">
       <ContactForm />
     </div>
-    
+
     <!-- 引入页脚组件 -->
     <div id="footer">
       <Footer />
@@ -90,10 +92,10 @@
 </template>
 
 <script setup>
-import Skills from '../components/Skills.vue';
-import Projects from '../components/Projects.vue';
-import ContactForm from '../components/ContactForm.vue';
-import Footer from '../components/Footer.vue';
+import Skills from '../components/Skills.vue'
+import Projects from '../components/Projects.vue'
+import ContactForm from '../components/ContactForm.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <style scoped>
@@ -109,7 +111,7 @@ import Footer from '../components/Footer.vue';
 }
 
 .hero span {
-  color: #ff6b35;
+  color: var(--primary-500);
 }
 
 .stats {
@@ -122,19 +124,19 @@ import Footer from '../components/Footer.vue';
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
   border-radius: 10px;
-  box-shadow:  1px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   flex: 1;
 }
 
 .number {
   font-size: 2.5rem;
-  color: #ff6b35;
+  color: #ee6f3d;
   font-weight: bold;
 }
 
 .label {
-  color: #7f8fa4;
+  color: rgb(3, 3, 31);
   margin-top: 0.5rem;
 }
 
@@ -146,7 +148,7 @@ import Footer from '../components/Footer.vue';
 
 .section-number {
   font-size: 2rem;
-  color: #ff6b35;
+  color: var(--primary-500);
   margin-right: 1rem;
 }
 
@@ -164,7 +166,7 @@ import Footer from '../components/Footer.vue';
   top: 0;
   height: 100%;
   width: 2px;
-  background: rgba(255, 107, 53, 0.3);
+  background: var(--primary-500);
 }
 
 .timeline-item {
@@ -179,11 +181,11 @@ import Footer from '../components/Footer.vue';
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #ff6b35;
+  background: var(--primary-500);
 }
 
 .timeline-date {
-  color: #ff6b35;
+  color: var(--primary-500);
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
@@ -201,11 +203,11 @@ import Footer from '../components/Footer.vue';
   .main-content {
     padding: 2rem;
   }
-  
+
   .hero h2 {
     font-size: 2rem;
   }
-  
+
   .stats {
     flex-direction: column;
   }

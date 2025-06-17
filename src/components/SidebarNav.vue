@@ -39,49 +39,98 @@ import IconHome from './icons/IconHome.vue'
 
 <style scoped>
 .sidebar-nav {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 20px 0;
+  background: var(--color-background-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-lg) 0;
   height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  transition: box-shadow var(--transition-normal) var(--ease-out);
 }
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+
+.sidebar-nav:hover {
+  box-shadow: var(--shadow-lg);
 }
-.sidebar-nav li {
-  margin: 0;
-}
-.sidebar-nav a {
+
+.nav-item {
   display: flex;
   align-items: center;
-  padding: 12px 32px;
-  color: #333;
+  padding: var(--space-sm) var(--space-xl);
+  color: var(--color-text);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   border-left: 4px solid transparent;
-  transition:
-    background 0.2s,
-    border-color 0.2s,
-    color 0.2s;
+  margin: var(--space-xs) 0;
+  transition: all var(--transition-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
 }
-.sidebar-nav a:hover {
-  background: #f0f6ff;
-  color: #409eff;
-  border-left: 4px solid #409eff;
-  scale: 1.05;
-  transition: 0.2s;
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-100);
+  transform: translateX(-100%);
+  transition: transform var(--transition-normal) var(--ease-out);
+  z-index: -1;
 }
-.icon {
-  margin-right: 12px;
-  font-size: 1.2em;
+
+.nav-item:hover {
+  color: var(--primary-600);
+  border-left: 4px solid var(--primary-500);
+  transform: translateX(var(--space-xs));
 }
+
+.nav-item:hover::before {
+  transform: translateX(0);
+}
+
+.nav-item.router-link-active {
+  color: var(--primary-600);
+  border-left: 4px solid var(--primary-500);
+  background-color: var(--primary-50);
+  font-weight: var(--font-semibold);
+}
+
+.icon,
 .fas {
-  margin-right: 12px;
-  font-size: 1.2em;
+  margin-right: var(--space-md);
+  font-size: var(--text-lg);
+  transition: transform var(--transition-normal) var(--ease-out);
+  color: var(--neutral-500);
+}
+
+.nav-item:hover .icon,
+.nav-item:hover .fas {
+  transform: scale(1.2);
+  color: var(--primary-500);
+}
+
+.nav-item.router-link-active .icon,
+.nav-item.router-link-active .fas {
+  color: var(--primary-500);
+}
+
+/* 添加响应式设计 */
+@media (max-width: 768px) {
+  .sidebar-nav {
+    padding: var(--space-md) 0;
+  }
+
+  .nav-item {
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .icon,
+  .fas {
+    margin-right: var(--space-sm);
+  }
 }
 </style>
