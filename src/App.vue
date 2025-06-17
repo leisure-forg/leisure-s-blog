@@ -12,6 +12,14 @@ import './assets/base.css'
 const route = useRoute()
 const isLoggedIn = computed(() => localStorage.getItem('isLoggedIn') === 'true')
 const isAuthPage = computed(() => ['login', 'register'].includes(route.name as string))
+const shouldShowSidebarExtra = computed(() => {
+  // 不在登录页面且不在详情页面时显示
+  return (
+    !isAuthPage.value &&
+    !route.path.includes('detail') &&
+    !String(route.name).toLowerCase().includes('detail')
+  )
+})
 </script>
 
 <template>
@@ -32,7 +40,7 @@ const isAuthPage = computed(() => ['login', 'register'].includes(route.name as s
         <main class="main-content">
           <RouterView />
         </main>
-        <aside v-if="route.name === 'home'" class="sidebar-right">
+        <aside v-if="shouldShowSidebarExtra" class="sidebar-right">
           <SidebarExtra />
         </aside>
       </div>

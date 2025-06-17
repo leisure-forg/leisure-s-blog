@@ -44,9 +44,11 @@ import IconHome from './icons/IconHome.vue'
   box-shadow: var(--shadow-md);
   padding: var(--space-lg) 0;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
   transition: box-shadow var(--transition-normal) var(--ease-out);
 }
 

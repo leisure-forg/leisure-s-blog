@@ -17,7 +17,7 @@ const messages = ref<Message[]>([
     author: '技术爱好者',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
     createTime: '2025-05-20 15:30:00',
-    color: '#fff8dc'
+    color: '#fff8dc',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const messages = ref<Message[]>([
     author: 'Docker学习者',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
     createTime: '2025-05-19 14:20:00',
-    color: '#e6f3ff'
+    color: '#e6f3ff',
   },
   {
     id: 3,
@@ -33,27 +33,33 @@ const messages = ref<Message[]>([
     author: 'Spring开发者',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice',
     createTime: '2025-05-18 10:15:00',
-    color: '#fff0f5'
-  }
+    color: '#fff0f5',
+  },
 ])
 
-const colors = ['#fff8dc', '#e6f3ff', '#fff0f5', '#f0fff0', '#fff5ee']
+const colors = ref([
+  'var(--color-background-mute)',
+  'var(--color-background-soft)',
+  'var(--color-background-mute)',
+  'var(--color-background-soft)',
+  'var(--color-background-mute)',
+])
 
 const newMessage = ref({
   content: '',
-  author: '访客'
+  author: '访客',
 })
 
 const addMessage = () => {
   if (!newMessage.value.content.trim()) return
-  
+
   messages.value.unshift({
     id: messages.value.length + 1,
     content: newMessage.value.content,
     author: newMessage.value.author,
     avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Math.random()}`,
     createTime: new Date().toLocaleString(),
-    color: colors[Math.floor(Math.random() * colors.length)]
+    color: colors[Math.floor(Math.random() * colors.value.length)],
   })
 
   newMessage.value.content = ''
@@ -63,13 +69,9 @@ const addMessage = () => {
 <template>
   <div class="messages-container">
     <h1 class="page-title">留言板</h1>
-    
+
     <div class="message-form">
-      <textarea
-        v-model="newMessage.content"
-        placeholder="写下你的留言..."
-        rows="3"
-      ></textarea>
+      <textarea v-model="newMessage.content" placeholder="写下你的留言..." rows="3"></textarea>
       <button @click="addMessage">发送留言</button>
     </div>
 
@@ -81,7 +83,7 @@ const addMessage = () => {
         :style="{ backgroundColor: message.color }"
       >
         <div class="message-header">
-          <img :src="message.avatar" :alt="message.author" class="avatar">
+          <img :src="message.avatar" :alt="message.author" class="avatar" />
           <span class="author">{{ message.author }}</span>
         </div>
         <div class="message-content">{{ message.content }}</div>
@@ -99,12 +101,12 @@ const addMessage = () => {
 .page-title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  color: var(--color-heading);
 }
 
 .message-form {
   margin-bottom: 30px;
-  background: #fff;
+  background: var(--color-background-soft);
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
@@ -113,11 +115,13 @@ const addMessage = () => {
 textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   resize: vertical;
   margin-bottom: 12px;
   font-family: inherit;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 button {
@@ -173,19 +177,19 @@ button:hover {
 
 .author {
   font-weight: 500;
-  color: #333;
+  color: #2f2f46;
 }
 
 .message-content {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 12px;
-  color: #444;
+  color: #2f2f46;
 }
 
 .message-time {
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-light);
   text-align: right;
 }
 </style>

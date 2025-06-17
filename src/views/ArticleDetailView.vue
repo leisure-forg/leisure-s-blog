@@ -250,7 +250,7 @@ const toggleLike = () => {
 
 .article-title {
   font-size: 28px;
-  color: #2c3e50;
+  color: var(--color-heading);
   margin-bottom: 16px;
 }
 
@@ -259,22 +259,22 @@ const toggleLike = () => {
 }
 
 .update-time {
-  color: #666;
+  color: var(--color-text-light);
   margin-right: 16px;
 }
 
 .tag {
-  background: #f0f2f5;
+  background: var(--color-background-soft);
   padding: 4px 8px;
   border-radius: 4px;
   margin-right: 8px;
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-light);
 }
 
 .article-content {
   line-height: 1.8;
-  color: #2c3e50;
+  color: var(--color-text);
   margin-bottom: 40px;
 }
 
@@ -318,11 +318,13 @@ const toggleLike = () => {
 textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   resize: vertical;
   margin-bottom: 12px;
   font-family: inherit;
+  background-color: var(--color-background-soft);
+  color: var(--color-text);
 }
 
 button {
@@ -332,11 +334,12 @@ button {
   padding: 8px 16px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 button:hover {
   background: #357abd;
+  opacity: 0.9;
 }
 
 .comments-list {
@@ -349,7 +352,7 @@ button:hover {
   display: flex;
   gap: 16px;
   padding: 16px;
-  background: #f8f9fa;
+  background: var(--color-background-soft);
   border-radius: 8px;
 }
 
@@ -372,7 +375,7 @@ button:hover {
 
 .author {
   font-weight: 500;
-  color: #2c3e50;
+  color: #eeeeee;
 }
 
 .time {
@@ -382,7 +385,7 @@ button:hover {
 
 .text {
   margin: 0;
-  color: #2c3e50;
+  color: #b9b9b9;
   line-height: 1.5;
 }
 </style>

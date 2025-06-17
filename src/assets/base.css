@@ -57,32 +57,32 @@
   --color-shadow: rgba(0, 0, 0, 0.04);
 }
 
-/* 蓝紫主题 - 深色模式 */
+/* 深蓝主题 - 深色模式 */
 :root[data-theme='indigo'] {
-  --theme-primary: var(--theme-indigo-500);
-  --theme-primary-dark: var(--theme-indigo-600);
-  --theme-background: #1a1a2e;
-  --theme-background-soft: #242438;
-  --theme-shadow: rgba(0, 0, 0, 0.2);
-  --theme-tag-bg: #3a3a5c;
+  --theme-primary: var(--primary-400);
+  --theme-primary-dark: var(--primary-500);
+  --theme-background: #121212;
+  --theme-background-soft: #1e1e1e;
+  --theme-shadow: rgba(0, 0, 0, 0.3);
+  --theme-tag-bg: #2a2a2a;
 
   /* 深色模式文本和背景颜色 */
-  --color-background: #1a1a2e;
-  --color-background-soft: #242438;
-  --color-background-mute: #2f2f46;
+  --color-background: #121212;
+  --color-background-soft: #1e1e1e;
+  --color-background-mute: #2a2a2a;
 
-  --color-border: #3a3a5c;
-  --color-border-hover: #4a4a6a;
-  --color-border-accent: #6366f1;
+  --color-border: #333333;
+  --color-border-hover: #404040;
+  --color-border-accent: var(--primary-400);
 
-  --color-heading: #e1e1ff;
-  --color-text: #e1e1ff;
-  --color-text-soft: #a8a8d0;
+  --color-heading: #ffffff;
+  --color-text: #ffffff;
+  --color-text-soft: #a0a0a0;
 
-  --color-primary: var(--theme-indigo-500);
-  --color-primary-dark: var(--theme-indigo-600);
-  --color-primary-soft: rgba(99, 102, 241, 0.1);
-  --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-primary: var(--primary-400);
+  --color-primary-dark: var(--primary-500);
+  --color-primary-soft: rgba(56, 189, 248, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* 全局共享变量 - 不随主题变化 */
@@ -166,8 +166,8 @@
     --color-border-hover: var(--neutral-600);
 
     --color-heading: var(--neutral-50);
-    --color-text: var(--neutral-200);
-    --color-text-soft: var(--neutral-400);
+    --color-text: var(--neutral-700);
+    --color-text-soft: var(--neutral-700);
 
     --color-primary: var(--primary-400);
     --color-primary-dark: var(--primary-500);
@@ -221,4 +221,11 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* 主题切换开关样式 */
+.theme-toggle {
+  /* 将紫色替换为蓝色 */
+  --toggle-color: var(--color-primary);
+  --toggle-bg-color: var(--color-primary-dark);
 }
