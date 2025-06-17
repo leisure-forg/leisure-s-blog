@@ -14,6 +14,10 @@
   --accent-500: #f97316; /* 橙色 */
   --accent-600: #ea580c;
 
+  /* 蓝紫主题色 */
+  --theme-indigo-500: #6366f1;
+  --theme-indigo-600: #4f46e5;
+
   /* 中性色 */
   --neutral-50: #fafafa;
   --neutral-100: #f4f4f5;
@@ -25,6 +29,25 @@
   --neutral-700: #3f3f46;
   --neutral-800: #27272a;
   --neutral-900: #18181b;
+
+  /* 主题变量 - 默认使用橙色主题 */
+  --theme-primary: var(--accent-500);
+  --theme-primary-dark: var(--accent-600);
+  --theme-background: #ffffff;
+  --theme-background-soft: var(--neutral-50);
+  --theme-shadow: rgba(0, 0, 0, 0.04);
+  --theme-tag-bg: #ffe9d9;
+}
+
+/* 蓝紫主题 */
+:root[data-theme='indigo'] {
+  --theme-primary: var(--theme-indigo-500);
+  --theme-primary-dark: var(--theme-indigo-600);
+  --theme-background: #ffffff;
+  --theme-background-soft: var(--neutral-50);
+  --theme-shadow: rgba(0, 0, 0, 0.04);
+  --theme-tag-bg: #e3f0ff;
+}
 
   /* 功能色 */
   --success: #10b981;

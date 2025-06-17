@@ -41,7 +41,7 @@
 }
 
 .sidebar-profile:hover {
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 15px var(--color-shadow);
 }
 
 .avatar {
@@ -50,13 +50,13 @@
   border-radius: var(--radius-full);
   object-fit: cover;
   margin-bottom: var(--space-md);
-  border: 3px solid var(--primary-100);
+  border: 3px solid var(--color-border-accent);
   transition: all var(--transition-normal) var(--ease-out);
 }
 
 .avatar:hover {
   transform: scale(1.1);
-  border-color: var(--primary-300);
+  border-color: var(--color-primary);
   box-shadow: var(--shadow-lg);
 }
 

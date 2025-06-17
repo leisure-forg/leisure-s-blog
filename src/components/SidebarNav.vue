@@ -76,15 +76,15 @@ import IconHome from './icons/IconHome.vue'
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--primary-100);
+  background-color: var(--color-primary-soft);
   transform: translateX(-100%);
   transition: transform var(--transition-normal) var(--ease-out);
   z-index: -1;
 }
 
 .nav-item:hover {
-  color: var(--primary-600);
-  border-left: 4px solid var(--primary-500);
+  color: var(--color-primary-dark);
+  border-left: 4px solid var(--color-primary);
   transform: translateX(var(--space-xs));
 }
 
@@ -93,9 +93,9 @@ import IconHome from './icons/IconHome.vue'
 }
 
 .nav-item.router-link-active {
-  color: var(--primary-600);
-  border-left: 4px solid var(--primary-500);
-  background-color: var(--primary-50);
+  color: var(--color-primary-dark);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-primary-soft);
   font-weight: var(--font-semibold);
 }
 
@@ -104,18 +104,18 @@ import IconHome from './icons/IconHome.vue'
   margin-right: var(--space-md);
   font-size: var(--text-lg);
   transition: transform var(--transition-normal) var(--ease-out);
-  color: var(--neutral-500);
+  color: var(--color-text-light);
 }
 
 .nav-item:hover .icon,
 .nav-item:hover .fas {
   transform: scale(1.2);
-  color: var(--primary-500);
+  color: var(--color-primary);
 }
 
 .nav-item.router-link-active .icon,
 .nav-item.router-link-active .fas {
-  color: var(--primary-500);
+  color: var(--color-primary);
 }
 
 /* 添加响应式设计 */

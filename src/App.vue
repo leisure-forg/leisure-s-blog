@@ -4,8 +4,10 @@ import SidebarProfile from './components/SidebarProfile.vue'
 import SidebarNav from './components/SidebarNav.vue'
 import SidebarExtra from './components/SidebarExtra.vue'
 import UserAvatar from './components/UserAvatar.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
 import { RouterView, useRoute } from 'vue-router'
 import { computed } from 'vue'
+import './assets/base.css'
 
 const route = useRoute()
 const isLoggedIn = computed(() => localStorage.getItem('isLoggedIn') === 'true')
@@ -23,6 +25,9 @@ const isAuthPage = computed(() => ['login', 'register'].includes(route.name as s
         <aside class="sidebar-left">
           <SidebarProfile />
           <SidebarNav />
+          <div class="theme-toggle-wrapper">
+            <ThemeToggle />
+          </div>
         </aside>
         <main class="main-content">
           <RouterView />
@@ -89,6 +94,9 @@ body,
   border-radius: 0 16px 16px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .main-content {
@@ -106,6 +114,15 @@ body,
   border-radius: 16px 0 0 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   flex-shrink: 0;
+}
+
+.theme-toggle-wrapper {
+  padding: var(--space-md);
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--color-border);
 }
 
 .user-avatar-container {
@@ -193,7 +210,7 @@ nav a:first-of-type {
     place-items: flex-start;
     flex-wrap: wrap;
   }
-  
+
   nav {
     text-align: left;
     margin-left: -1rem;
@@ -204,4 +221,3 @@ nav a:first-of-type {
   }
 }
 </style>
-

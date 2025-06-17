@@ -1,5 +1,9 @@
 <template>
   <div class="sidebar-extra">
+    <!-- 主题切换 -->
+    <section class="theme-section">
+      <ThemeToggle />
+    </section>
     <!-- 心情/格言区 -->
     <section class="mood-section">
       <div class="mood-title">🌞 原来长大并不简单</div>
@@ -7,7 +11,6 @@
       <div class="mood-time">2025-04-21</div>
       <div class="mood-quote">时光是怎么平静划刻录，苦尝蜕刻的鸿蒙里，终将开出名为坚韧的花。</div>
       <div class="mood-time">2025-05-29</div>
-      
     </section>
     <!-- 文章分类区 -->
     <section class="category-section">
@@ -38,18 +41,14 @@
 </template>
 
 <script setup>
-// 暂无逻辑
-</script>
-
-<script>
-export default {}
+import ThemeToggle from './ThemeToggle.vue'
 </script>
 
 <style scoped>
 .sidebar-extra {
-  background: #fff;
+  background: var(--theme-background);
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px var(--theme-shadow);
   padding: 24px 20px;
   font-size: 1rem;
   height: 100%;
@@ -57,27 +56,37 @@ export default {}
   display: flex;
   flex-direction: column;
 }
+
+.theme-section {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--theme-background-soft);
+  display: flex;
+  justify-content: center;
+}
+
 .mood-section {
   margin-bottom: 32px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--theme-background-soft);
 }
 .mood-title {
   font-weight: bold;
   font-size: 1.1rem;
   margin-bottom: 8px;
+  color: var(--theme-primary-dark);
 }
 .mood-desc {
-  color: #888;
+  color: var(--neutral-600);
   margin-bottom: 4px;
 }
 .mood-time {
-  color: #b0b0b0;
+  color: var(--neutral-400);
   font-size: 0.92em;
   margin-bottom: 6px;
 }
 .mood-quote {
-  color: #409eff;
+  color: var(--theme-primary);
   font-size: 0.98em;
   margin-bottom: 4px;
 }
@@ -85,9 +94,10 @@ export default {}
   font-weight: bold;
   margin-bottom: 10px;
   font-size: 1.05em;
+  color: var(--theme-primary-dark);
 }
 .count {
-  color: #b0b0b0;
+  color: var(--neutral-400);
   font-size: 0.95em;
   margin-left: 8px;
 }
@@ -100,10 +110,10 @@ export default {}
   display: flex;
   justify-content: space-between;
   padding: 6px 0;
-  color: #555;
+  color: var(--neutral-700);
 }
 .cat-count {
-  color: #409eff;
+  color: var(--theme-primary);
   font-size: 0.95em;
 }
 .tag-section {
@@ -116,18 +126,23 @@ export default {}
   margin-top: 8px;
 }
 .tag {
-  background: #e3f0ff;
-  color: #409eff;
+  background: var(--theme-tag-bg);
+  color: var(--theme-primary-dark);
   border-radius: 12px;
   padding: 4px 14px;
   font-size: 0.98em;
   transition:
     background 0.2s,
-    color 0.2s;
+    color 0.2s,
+    transform 0.2s;
   cursor: pointer;
 }
+
 .tag:hover {
-  background: #409eff;
+  transform: translateY(-1px);
+}
+.tag:hover {
+  background: var(--theme-primary);
   color: #fff;
 }
 </style>
