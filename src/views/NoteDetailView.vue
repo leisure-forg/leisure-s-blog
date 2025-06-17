@@ -208,18 +208,18 @@ const toggleLike = () => {
 
 .note-title {
   font-size: 28px;
-  color: #ffffff; /* 标题颜色改为白色 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
   margin-bottom: 16px;
 }
 
 .note-meta {
   margin-bottom: 24px;
-  color: #a0a0a0; /* 更改为浅灰色，适合暗色主题 */
+  color: var(--color-text-light); /* 使用主题浅色文本变量 */
 }
 
 .note-content {
   line-height: 1.8;
-  color: #ffffff; /* 内容颜色改为白色 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
   margin-bottom: 40px;
 }
 
@@ -304,7 +304,7 @@ const toggleLike = () => {
 }
 
 .comments-section h2 {
-  color: #ffffff; /* 评论标题颜色 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
   margin-bottom: 20px;
 }
 
@@ -315,9 +315,9 @@ const toggleLike = () => {
 textarea {
   width: 100%;
   padding: 12px;
-  background-color: #2a2a2a; /* 输入框背景色 */
-  color: #ffffff; /* 输入框文字颜色 */
-  border: 1px solid #404040; /* 输入框边框 */
+  background-color: var(--color-background-soft); /* 使用主题软背景颜色变量 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
+  border: 1px solid var(--color-border); /* 使用主题边框颜色变量 */
   border-radius: 8px;
   resize: vertical;
   margin-bottom: 12px;
@@ -325,7 +325,7 @@ textarea {
 }
 
 textarea::placeholder {
-  color: #a0a0a0; /* 占位符颜色 */
+  color: var(--color-text-light); /* 使用主题浅色文本变量 */
 }
 
 button {
@@ -352,9 +352,9 @@ button:hover {
   display: flex;
   gap: 16px;
   padding: 16px;
-  background: #1e1e1e; /* 评论背景色 */
+  background: var(--color-background-soft); /* 使用主题软背景颜色变量 */
   border-radius: 8px;
-  border: 1px solid #333333; /* 评论边框 */
+  border: 1px solid var(--color-border); /* 使用主题边框颜色变量 */
 }
 
 .avatar {
@@ -376,17 +376,17 @@ button:hover {
 
 .author {
   font-weight: 500;
-  color: #ffffff; /* 作者名颜色 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
 }
 
 .time {
   font-size: 12px;
-  color: #a0a0a0; /* 时间颜色 */
+  color: var(--color-text-light); /* 使用主题浅色文本变量 */
 }
 
 .text {
   margin: 0;
-  color: #e0e0e0; /* 评论文字颜色 */
+  color: var(--color-text); /* 使用主题文本颜色变量 */
   line-height: 1.5;
 }
 
@@ -406,7 +406,7 @@ button:hover {
 
 :deep(.markdown-body p),
 :deep(.markdown-body li) {
-  color: #e0e0e0;
+  color: var(--color-text);
 }
 
 :deep(.markdown-body code) {

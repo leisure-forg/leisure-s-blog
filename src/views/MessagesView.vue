@@ -38,11 +38,13 @@ const messages = ref<Message[]>([
 ])
 
 const colors = ref([
-  'var(--color-background-mute)',
-  'var(--color-background-soft)',
-  'var(--color-background-mute)',
-  'var(--color-background-soft)',
-  'var(--color-background-mute)',
+  '#fff8dc', // 淡黄色
+  '#e6f3ff', // 淡蓝色
+  '#fff0f5', // 淡粉色
+  '#f0fff0', // 淡绿色
+  '#f5f5f5', // 淡灰色
+  '#ffe4e1', // 淡红色
+  '#f0f8ff', // 淡天蓝色
 ])
 
 const newMessage = ref({
@@ -59,7 +61,7 @@ const addMessage = () => {
     author: newMessage.value.author,
     avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Math.random()}`,
     createTime: new Date().toLocaleString(),
-    color: colors[Math.floor(Math.random() * colors.value.length)],
+    color: colors.value[Math.floor(Math.random() * colors.value.length)],
   })
 
   newMessage.value.content = ''
@@ -177,19 +179,19 @@ button:hover {
 
 .author {
   font-weight: 500;
-  color: #2f2f46;
+  color: #2bd814;
 }
 
 .message-content {
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 12px;
-  color: #2f2f46;
+  color: #22c0e7;
 }
 
 .message-time {
   font-size: 12px;
-  color: var(--color-text-light);
+  color: var(--color-background);
   text-align: right;
 }
 </style>

@@ -375,17 +375,17 @@ button:hover {
 
 .author {
   font-weight: 500;
-  color: #eeeeee;
+  color: var(--color-text); /* 使用主题文本颜色变量 */
 }
 
 .time {
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-light); /* 使用主题浅色文本变量 */
 }
 
 .text {
   margin: 0;
-  color: #b9b9b9;
+  color: var(--color-text); /* 使用主题文本颜色变量 */
   line-height: 1.5;
 }
 </style>
