@@ -35,12 +35,6 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/notes/:id',
-      name: 'note-detail',
-      component: () => import('../views/NoteDetailView.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
       path: '/messages',
       name: 'messages',
       component: () => import('../views/MessagesView.vue'),
@@ -49,13 +43,7 @@ const router = createRouter({
     {
       path: '/albums',
       name: 'albums',
-      component: () => import('../views/AlbumsView.vue'),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/albums/:id',
-      name: 'album-detail',
-      component: () => import('../views/AlbumDetailView.vue'),
+      component: () => import('../views/AlbumView.vue'),
       meta: { requiresAuth: true },
     },
     {

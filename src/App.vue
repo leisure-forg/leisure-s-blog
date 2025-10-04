@@ -96,7 +96,7 @@ body,
 }
 
 .sidebar-left {
-  width: 260px;
+  width: 280px;
   margin: 0;
   align-self: stretch;
   border-radius: 0 16px 16px 0;

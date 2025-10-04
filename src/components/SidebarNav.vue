@@ -39,12 +39,12 @@ import IconHome from './icons/IconHome.vue'
 
 <style scoped>
 .sidebar-nav {
-  background: var(--color-background-soft);
+    background: var(--color-background-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   padding: var(--space-lg) 0;
   height: 100%;
-  width: 100%;
+  width: 105%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;

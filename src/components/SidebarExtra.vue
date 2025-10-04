@@ -42,7 +42,7 @@ import ThemeToggle from './ThemeToggle.vue'
 
 <style scoped>
 .sidebar-extra {
-  background: var(--theme-background);
+  background: var(--color-background-soft);
   border-radius: 16px;
   box-shadow: 0 2px 8px var(--theme-shadow);
   padding: 24px 20px;
