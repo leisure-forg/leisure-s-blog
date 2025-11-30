@@ -39,12 +39,13 @@
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
+defineOptions({ name: 'SiteFooter' })
 
 const currentYear = computed(() => new Date().getFullYear())
 
-const scrollTo = (sectionId) => {
+const scrollTo = (sectionId: string) => {
   const element = document.getElementById(sectionId)
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })

@@ -97,7 +97,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -113,8 +113,9 @@ const formData = reactive({
   location: ''
 });
 
-const handleAvatarChange = (event) => {
-  const file = event.target.files[0];
+const handleAvatarChange = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
   if (file) {
     // 这里可以添加上传头像的逻辑
     alert('头像上传功能暂未实现！');

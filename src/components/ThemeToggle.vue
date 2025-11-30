@@ -42,23 +42,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 
 // 从 localStorage 初始化主题，如果没有保存过主题则默认使用 default
-const savedTheme = localStorage.getItem('user-theme') || 'default'
-const currentTheme = ref(savedTheme)
+const savedTheme = (localStorage.getItem('user-theme') as 'default' | 'indigo') || 'default'
+const currentTheme = ref<'default' | 'indigo'>(savedTheme)
 
 // 切换主题
 const toggleTheme = () => {
-  const newTheme = currentTheme.value === 'default' ? 'indigo' : 'default'
+  const newTheme: 'default' | 'indigo' = currentTheme.value === 'default' ? 'indigo' : 'default'
   currentTheme.value = newTheme
   applyTheme(newTheme)
   console.log('Theme toggled to:', newTheme) // 调试日志
 }
 
 // 应用主题到 HTML 元素
-const applyTheme = (theme) => {
+const applyTheme = (theme: 'default' | 'indigo') => {
   console.log('Applying theme:', theme)
 
   // 确保在切换主题之前移除现有的主题

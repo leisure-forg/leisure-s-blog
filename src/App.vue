@@ -1,36 +1,107 @@
 <script setup lang="ts">
 import TopVideoHeader from './components/TopVideoHeader.vue'
+import TopNavBar from './components/TopNavBar.vue'
 import SidebarProfile from './components/SidebarProfile.vue'
 import SidebarNav from './components/SidebarNav.vue'
 import SidebarExtra from './components/SidebarExtra.vue'
 import UserAvatar from './components/UserAvatar.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+import Live2DWidget from './components/Live2DWidget.vue'
 import { RouterView, useRoute } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, reactive } from 'vue'
 import './assets/base.css'
 
 const route = useRoute()
 const isLoggedIn = computed(() => localStorage.getItem('isLoggedIn') === 'true')
 const isAuthPage = computed(() => ['login', 'register'].includes(route.name as string))
 const shouldShowSidebarExtra = computed(() => {
-  // 不在登录页面且不在详情页面时显示
   return (
     !isAuthPage.value &&
     !route.path.includes('detail') &&
     !String(route.name).toLowerCase().includes('detail')
   )
 })
+
+const isMobile = ref(false)
+const updateIsMobile = () => {
+  isMobile.value = window.matchMedia('(max-width: 900px)').matches
+}
+
+// 头像拖拽逻辑
+const avatarPosition = reactive({ x: 0, y: 0 })
+const isDragging = ref(false)
+const dragOffset = { x: 0, y: 0 }
+
+const startDrag = (e: MouseEvent) => {
+  // 如果点击的是头像内部的交互元素（如菜单项），则不触发拖拽
+  // 这里简单处理，只要按下就触发，利用 preventDefault 防止选择文本
+  e.preventDefault()
+  isDragging.value = true
+  dragOffset.x = e.clientX - avatarPosition.x
+  dragOffset.y = e.clientY - avatarPosition.y
+
+  document.addEventListener('mousemove', onDrag)
+  document.addEventListener('mouseup', stopDrag)
+}
+
+const onDrag = (e: MouseEvent) => {
+  if (!isDragging.value) return
+  avatarPosition.x = e.clientX - dragOffset.x
+  avatarPosition.y = e.clientY - dragOffset.y
+}
+
+const stopDrag = () => {
+  isDragging.value = false
+  document.removeEventListener('mousemove', onDrag)
+  document.removeEventListener('mouseup', stopDrag)
+}
+
+const startTouchDrag = (e: TouchEvent) => {
+  isDragging.value = true
+  const touch = e.touches[0]
+  dragOffset.x = touch.clientX - avatarPosition.x
+  dragOffset.y = touch.clientY - avatarPosition.y
+
+  document.addEventListener('touchmove', onTouchDrag, { passive: false })
+  document.addEventListener('touchend', stopTouchDrag)
+}
+
+const onTouchDrag = (e: TouchEvent) => {
+  if (!isDragging.value) return
+  if (e.cancelable) e.preventDefault()
+
+  const touch = e.touches[0]
+  avatarPosition.x = touch.clientX - dragOffset.x
+  avatarPosition.y = touch.clientY - dragOffset.y
+}
+
+const stopTouchDrag = () => {
+  isDragging.value = false
+  document.removeEventListener('touchmove', onTouchDrag)
+  document.removeEventListener('touchend', stopTouchDrag)
+}
+
+onMounted(() => {
+  updateIsMobile()
+  window.addEventListener('resize', updateIsMobile)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateIsMobile)
+})
 </script>
 
 <template>
   <div class="app">
+    <Live2DWidget />
     <div v-if="isAuthPage">
       <RouterView />
     </div>
     <div v-else class="main-layout">
-      <TopVideoHeader />
+      <TopNavBar v-if="isMobile" />
+      <TopVideoHeader v-else />
       <div class="content-row">
-        <aside class="sidebar-left">
+        <aside v-if="!isMobile" class="sidebar-left">
           <SidebarProfile />
           <SidebarNav />
           <div class="theme-toggle-wrapper">
@@ -40,11 +111,20 @@ const shouldShowSidebarExtra = computed(() => {
         <main class="main-content">
           <RouterView />
         </main>
-        <aside v-if="shouldShowSidebarExtra" class="sidebar-right">
+        <aside v-if="shouldShowSidebarExtra && !isMobile" class="sidebar-right">
           <SidebarExtra />
         </aside>
       </div>
-      <div class="user-avatar-container" v-if="isLoggedIn">
+      <div
+        class="user-avatar-container"
+        v-if="isLoggedIn"
+        @mousedown="startDrag"
+        @touchstart="startTouchDrag"
+        :style="{
+          transform: `translate(${avatarPosition.x}px, ${avatarPosition.y}px)`,
+          cursor: isDragging ? 'grabbing' : 'grab',
+        }"
+      >
         <UserAvatar />
       </div>
     </div>
@@ -138,6 +218,7 @@ body,
   top: 20px;
   right: 20px;
   z-index: 99999;
+  touch-action: none;
 }
 
 @media (max-width: 1200px) {
@@ -148,22 +229,13 @@ body,
 }
 
 @media (max-width: 900px) {
-  .main-layout {
-    padding-top: 50vh;
-  }
   .content-row {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
   }
-  .sidebar-left,
-  .sidebar-right {
-    width: 100%;
-    margin: 0 0 16px 0;
-    border-radius: 16px;
-  }
   .main-content {
-    margin: 0 0 16px 0;
+    margin: 0;
   }
 }
 

@@ -1,5 +1,7 @@
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
+  type EmptyProps = Record<string, never>
+  type EmptyBindings = Record<string, never>
+  const component: DefineComponent<EmptyProps, EmptyBindings, unknown>
   export default component
-} 
+}

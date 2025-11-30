@@ -33,8 +33,9 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
+defineOptions({ name: 'SkillsSection' })
 
 const skillCategories = ref([
   {
@@ -42,15 +43,38 @@ const skillCategories = ref([
     skills: [
       { name: 'Java', level: 90, isHovered: false, isVisible: false },
       { name: 'MySQL', level: 85, isHovered: false, isVisible: false },
-      { name: 'Vue.js', level: 80, isHovered: false, isVisible: false },
+      { name: 'Redis', level: 80, isHovered: false, isVisible: false },
+      { name: 'Go', level: 70, isHovered: false, isVisible: false },
+      { name: 'Express', level: 65, isHovered: false, isVisible: false },
     ],
   },
   {
-    name: '工具和框架',
+    name: 'AI应用开发',
     skills: [
-      { name: 'Spring Boot', level: 70, isHovered: false, isVisible: false },
-      { name: 'Git', level: 65, isHovered: false, isVisible: false },
-      { name: 'Docker', level: 60, isHovered: false, isVisible: false },
+      { name: 'LangChain', level: 80, isHovered: false, isVisible: false },
+      { name: 'RAG系统', level: 75, isHovered: false, isVisible: false },
+      { name: '向量数据库', level: 70, isHovered: false, isVisible: false },
+      { name: '提示词工程', level: 80, isHovered: false, isVisible: false },
+      { name: 'Agent系统设计', level: 75, isHovered: false, isVisible: false },
+    ],
+  },
+  {
+    name: '运维与部署',
+    skills: [
+      { name: 'Docker', level: 70, isHovered: false, isVisible: false },
+      { name: 'Nginx', level: 65, isHovered: false, isVisible: false },
+      { name: 'Git', level: 70, isHovered: false, isVisible: false },
+      { name: '云平台 (AWS/阿里云/腾讯云)', level: 60, isHovered: false, isVisible: false },
+    ],
+  },
+  {
+    name: '前端开发',
+    skills: [
+      { name: 'Vue 3', level: 80, isHovered: false, isVisible: false },
+      { name: 'React', level: 70, isHovered: false, isVisible: false },
+      { name: 'TypeScript', level: 65, isHovered: false, isVisible: false },
+      { name: 'HTML5/CSS3/JavaScript', level: 70, isHovered: false, isVisible: false },
+      { name: 'Vite', level: 70, isHovered: false, isVisible: false },
     ],
   },
 ])

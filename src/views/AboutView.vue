@@ -2,19 +2,19 @@
   <main class="main-content">
     <section id="home" class="hero">
       <h2>你好，我是 <span>leisure</span></h2>
-      <p>一名热爱编程的大学生，专注于后端开发</p>
+      <p>江西理工大学在校大二学生，方向：后端开发 / AI应用开发工程师</p>
 
       <div class="stats">
         <div class="stat-card">
-          <div class="number">1</div>
+          <div class="number">2</div>
           <div class="label">年编程经验</div>
         </div>
         <div class="stat-card">
-          <div class="number">3+</div>
+          <div class="number">15+</div>
           <div class="label">完成项目</div>
         </div>
         <div class="stat-card">
-          <div class="number">5</div>
+          <div class="number">10+</div>
           <div class="label">技术栈</div>
         </div>
       </div>
@@ -26,17 +26,17 @@
         <h3>我的故事</h3>
       </div>
       <p>
-        我是一名江西理工大学的学生，热爱编程和技术创新。在过去的两年里，我专注于学习后端开发与少量前端技术，包括Java,Spring,SpringMvc,Springboot,myBatis,Redis,nginx,maven,docker,linux,git,mysql,JDBC,JWT和html,css,js,vue等。
+        我是江西理工大学在校大二学生，方向为后端开发与AI应用开发。拥有2年编程经验，已完成15+项目，技术栈覆盖Java/Go/Node.js后端、数据库与消息队列、LangChain与RAG等AI技术，以及Docker与Nginx的运维部署与Vue/React前端开发。
       </p>
-      <p>我喜欢将创意转化为实际的网页和应用程序，并且一直在寻找新的挑战和学习机会。</p>
+      <p>我热衷将创意转化为工程化的网页与应用系统，并持续探索分布式架构与智能代理的融合实践。</p>
 
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-date">2024-12</div>
           <div class="timeline-content">
-            <h4>开始编程之旅</h4>
-            <p>接触Java,和WebSocket，创建了第一个局域网聊天应用</p>
+            <h4>编程启蒙阶段</h4>
+            <p>掌握Java核心与WebSocket，独立开发局域网聊天应用</p>
           </div>
         </div>
 
@@ -44,8 +44,8 @@
           <div class="timeline-dot"></div>
           <div class="timeline-date">2025-1</div>
           <div class="timeline-content">
-            <h4>深入Java</h4>
-            <p>学习Java基础和进阶知识，利用多线程开始成功开发Java版坦克大战</p>
+            <h4>Java进阶开发</h4>
+            <p>深入多线程与网络编程，开发Java版坦克大战</p>
           </div>
         </div>
 
@@ -53,17 +53,33 @@
           <div class="timeline-dot"></div>
           <div class="timeline-date">2025-5</div>
           <div class="timeline-content">
-            <h4>框架学习</h4>
-            <p>深入学习SSM架构，和数据库技术,构建了第一个校内外卖平台应用</p>
+            <h4>企业级应用开发</h4>
+            <p>掌握SSM框架与数据库技术，设计并实现校园外卖平台</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-date">2025-5</div>
+          <div class="timeline-date">2025-7</div>
           <div class="timeline-content">
-            <h4>不远的未来</h4>
-            <p>学习SpringCloud和SpringSecurity以及SpringAI等技术,将ai集成到我的应用程序当中</p>
+            <h4>AI技术突破</h4>
+            <p>深入学习LangChain与向量数据库，构建并优化RAG系统</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025-8-9</div>
+          <div class="timeline-content">
+            <h4>全栈能力拓展</h4>
+            <p>扩展Go与Node.js后端技术栈，参与多项全栈项目实战</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2025-10-11</div>
+          <div class="timeline-content">
+            <h4>技术深度整合</h4>
+            <p>研究消息队列与分布式系统，探索模型微调与Agent系统开发</p>
           </div>
         </div>
       </div>
@@ -91,7 +107,7 @@
   </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Skills from '../components/Skills.vue'
 import Projects from '../components/Projects.vue'
 import ContactForm from '../components/ContactForm.vue'

@@ -20,7 +20,7 @@
             background: `linear-gradient(135deg, ${project.gradientStart}, ${project.gradientEnd})`,
           }"
         >
-          <div class="project-icon">{{ project.icon }}</div>
+          <img v-if="project.image" :src="project.image" :alt="project.title" class="project-img" />
         </div>
         <div class="project-content">
           <h4>{{ project.title }}</h4>
@@ -41,7 +41,7 @@
             </span>
           </div>
           <div class="project-links">
-            <a href="#" class="project-link">
+            <a href="#" class="project-link" @click.prevent="handleViewProject(project)">
               <span>查看项目</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@
                 <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
             </a>
-            <a href="#" class="project-link">
+            <a href="#" class="project-link" @click.prevent="handleViewSource(project)">
               <span>源代码</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -84,51 +84,91 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import ragImg from '../static/picture/rag.jpg'
+import takeoutImg from '../static/picture/takeout.png'
+import networkImg from '../static/picture/network.png'
+import aiImg from '../static/picture/ai.png'
+defineOptions({ name: 'ProjectsSection' })
 
-const projects = ref([
+type ProjectItem = {
+  title: string
+  description: string
+  technologies: string[]
+  image?: string
+  gradientStart: string
+  gradientEnd: string
+  isHovered: boolean
+  isVisible: boolean
+}
+
+const projects = ref<ProjectItem[]>([
   {
-    title: '个人博客系统',
-    description: '一个使用Vue和Node.js构建的个人博客系统，支持文章发布、评论和用户管理功能。',
-    technologies: ['Vue', 'Node.js', 'MongoDB'],
-    icon: '📝',
+    title: '智能文档检索系统（公司项目:闭源）',
+    description:
+      '基于LangChain与向量数据库构建端到端RAG系统，支持多格式文档智能问答，并通过动态文本切割与重排序优化召回准确率。',
+    technologies: ['LangChain', '向量数据库', 'RAG', '重排序'],
+    image: ragImg,
     gradientStart: 'rgba(66, 153, 225, 0.6)',
     gradientEnd: 'rgba(66, 153, 225, 0.2)',
     isHovered: false,
     isVisible: false,
   },
   {
-    title: '在线学习平台',
-    description: '一个交互式在线学习平台，提供课程管理、视频播放和进度跟踪功能。',
-    technologies: ['Vue', 'Express', 'MySQL'],
-    icon: '🎓',
+    title: '校园外卖平台（个人项目:闭源）',
+    description:
+      '采用Spring Boot与Gin构建微服务架构，实施多级缓存策略并结合Nginx负载均衡与Docker容器化，实现高并发下的稳定运行。',
+    technologies: ['Spring Boot', 'Gin', 'Redis', 'Docker', 'Nginx'],
+    image: takeoutImg,
     gradientStart: 'rgba(72, 187, 120, 0.6)',
     gradientEnd: 'rgba(72, 187, 120, 0.2)',
     isHovered: false,
     isVisible: false,
   },
   {
-    title: '天气预报应用',
-    description: '一个实时天气预报应用，使用第三方API获取天气数据，并提供5天预报。',
-    technologies: ['JavaScript', 'API集成', 'CSS动画'],
-    icon: '🌤️',
+    title: '多Agent任务协作平台（公司项目:闭源）',
+    description:
+      '基于ReAct框架构建智能任务规划与多工具协作能力，集成MCP协议扩展，实现多Agent在复杂任务中的协同处理。',
+    technologies: ['ReAct', 'Agent', '工具调用', 'MCP'],
+    image: aiImg,
     gradientStart: 'rgba(237, 137, 54, 0.6)',
     gradientEnd: 'rgba(237, 137, 54, 0.2)',
     isHovered: false,
     isVisible: false,
   },
   {
-    title: '任务管理工具',
-    description: '一个简洁的任务管理工具，支持任务创建、分类、优先级设置和截止日期提醒。',
-    technologies: ['Vue', 'LocalStorage', 'Drag & Drop API'],
-    icon: '✅',
+    title: '江理校园网自动连接工具（个人项目:开源）',
+    description:
+      '使用PyQt开发桌面端界面，Go后端常驻服务检测网络状态并自动触发认证，提供稳定的校园网自动登录体验。',
+    technologies: ['PyQt', 'Go', 'Windows服务', '网络认证'],
+    image: networkImg,
     gradientStart: 'rgba(159, 122, 234, 0.6)',
     gradientEnd: 'rgba(159, 122, 234, 0.2)',
     isHovered: false,
     isVisible: false,
   },
 ])
+
+const isCampusProject = (p: ProjectItem) => p.title.includes('江理校园网自动连接工具')
+const handleViewProject = (p: ProjectItem) => {
+  if (isCampusProject(p)) {
+    window.open(
+      'https://leisure01-1745393177479-9855.oss-cn-beijing.aliyuncs.com/CampusNet-AutoLogin/login.zip',
+      '_blank',
+    )
+  } else {
+    alert('暂不提供该项目的在线访问')
+  }
+}
+
+const handleViewSource = (p: ProjectItem) => {
+  if (isCampusProject(p)) {
+    window.open('https://github.com/leisure-forg/CampusNet-AutoLogin', '_blank')
+  } else {
+    alert('该项目源代码暂不公开')
+  }
+}
 
 onMounted(() => {
   const observer = new IntersectionObserver(
@@ -264,6 +304,20 @@ onMounted(() => {
   transform: scale(1.2) rotate(8deg);
 }
 
+.project-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transform: scale(1);
+  transition: transform 0.3s var(--ease-out);
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.1);
+}
+
 .project-content {
   padding: var(--space-lg);
   position: relative;
@@ -392,3 +446,9 @@ onMounted(() => {
   }
 }
 </style>
+const isCampusProject = (p: ProjectItem) => p.title.includes('江理校园网自动连接工具') const
+handleViewProject = (p: ProjectItem) => { if (isCampusProject(p)) {
+window.open('https://leisure01-1745393177479-9855.oss-cn-beijing.aliyuncs.com/CampusNet-AutoLogin/login.zip',
+'_blank') } else { alert('暂不提供该项目的在线访问') } } const handleViewSource = (p: ProjectItem)
+=> { if (isCampusProject(p)) { window.open('https://github.com/leisure-forg/CampusNet-AutoLogin',
+'_blank') } else { alert('该项目源代码暂不公开') } }

@@ -36,8 +36,7 @@
   </div>
 </template>
 
-<script setup>
-import ThemeToggle from './ThemeToggle.vue'
+<script setup lang="ts">
 </script>
 
 <style scoped>

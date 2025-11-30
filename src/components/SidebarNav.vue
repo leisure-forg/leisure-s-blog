@@ -28,7 +28,7 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import IconCommunity from './icons/IconCommunity.vue'
 import IconDocumentation from './icons/IconDocumentation.vue'
 //import IconEcosystem from './icons/IconEcosystem.vue'

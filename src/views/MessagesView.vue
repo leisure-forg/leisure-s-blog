@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 interface Message {
   id: number
@@ -10,32 +10,17 @@ interface Message {
   color: string
 }
 
-const messages = ref<Message[]>([
-  {
-    id: 1,
-    content: '博主的文章写得很棒，希望能多分享一些技术文章！',
-    author: '技术爱好者',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Felix',
-    createTime: '2025-05-20 15:30:00',
-    color: '#fff8dc',
-  },
-  {
-    id: 2,
-    content: '最近的Docker教程对我帮助很大，感谢分享！',
-    author: 'Docker学习者',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
-    createTime: '2025-05-19 14:20:00',
-    color: '#e6f3ff',
-  },
-  {
-    id: 3,
-    content: '期待更多Spring Security相关的内容！',
-    author: 'Spring开发者',
-    avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Alice',
-    createTime: '2025-05-18 10:15:00',
-    color: '#fff0f5',
-  },
-])
+const messages = ref<Message[]>([])
+const loading = ref(false)
+const submitting = ref(false)
+const currentUser = ref<{
+  id: number
+  nickname?: string
+  username?: string
+  avatar_url?: string
+} | null>(null)
+
+const BASE_URL = 'http://139.196.162.210:8080'
 
 const colors = ref([
   '#fff8dc', // 淡黄色
@@ -49,23 +34,96 @@ const colors = ref([
 
 const newMessage = ref({
   content: '',
-  author: '访客',
 })
 
-const addMessage = () => {
+const getToken = () => localStorage.getItem('token')
+
+const fetchUserInfo = async () => {
+  const token = getToken()
+  if (!token) return
+  try {
+    const response = await fetch(`${BASE_URL}/api/v1/users/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (response.ok) {
+      currentUser.value = await response.json()
+    }
+  } catch (error) {
+    console.error('Fetch user info error:', error)
+  }
+}
+
+const fetchMessages = async () => {
+  loading.value = true
+  try {
+    const response = await fetch(`${BASE_URL}/api/v1/guestbook`)
+    if (response.ok) {
+      const data = await response.json()
+      messages.value = data.map((item: any, index: number) => ({
+        id: item.id,
+        content: item.content,
+        author: item.nickname || '访客',
+        avatar: item.avatar_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${item.id}`,
+        createTime: new Date(item.created_at).toLocaleString(),
+        color: colors.value[index % colors.value.length], // 循环分配颜色
+      }))
+    }
+  } catch (error) {
+    console.error('Fetch messages error:', error)
+  } finally {
+    loading.value = false
+  }
+}
+
+const addMessage = async () => {
   if (!newMessage.value.content.trim()) return
 
-  messages.value.unshift({
-    id: messages.value.length + 1,
-    content: newMessage.value.content,
-    author: newMessage.value.author,
-    avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${Math.random()}`,
-    createTime: new Date().toLocaleString(),
-    color: colors.value[Math.floor(Math.random() * colors.value.length)],
-  })
+  submitting.value = true
+  try {
+    const token = getToken()
+    if (!token) {
+      alert('请先登录')
+      return
+    }
 
-  newMessage.value.content = ''
+    await fetchUserInfo()
+
+    const payload = {
+      user_id: currentUser.value?.id || 0,
+      content: newMessage.value.content,
+      nickname: currentUser.value?.nickname || currentUser.value?.username || '访客',
+      avatar_url: currentUser.value?.avatar_url,
+    }
+
+    const response = await fetch(`${BASE_URL}/api/v1/guestbook`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    })
+
+    if (response.ok) {
+      newMessage.value.content = ''
+      await fetchMessages()
+    } else {
+      alert('留言失败')
+    }
+  } catch (error) {
+    console.error('Add message error:', error)
+    alert('留言出错')
+  } finally {
+    submitting.value = false
+  }
 }
+
+onMounted(() => {
+  fetchUserInfo()
+  fetchMessages()
+})
 </script>
 
 <template>
@@ -171,10 +229,11 @@ button:hover {
 }
 
 .avatar {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 8px;
+  object-fit: cover;
 }
 
 .author {
